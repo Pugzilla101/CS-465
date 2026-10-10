@@ -1,0 +1,43 @@
+# Travlr Getaways — CS 465 Full Stack Web Application
+
+## Project Overview
+
+Travlr Getaways is a course project that demonstrates a full stack travel application built using the MEAN stack: MongoDB, Express, Angular, and Node.js. The customer-facing website displays travel packages, while an Angular single-page application provides an administrative interface for managing trip data. The application uses a RESTful API and adds JWT-based authentication for protected administrative operations.
+
+## Architecture
+
+**Compare and contrast the types of frontend development you used in your full stack project, including Express HTML, JavaScript, and the single-page application (SPA).**
+
+During this project, I worked with two different approaches to frontend development. The customer-facing website uses Express with Handlebars templates to generate HTML on the server. This approach works well for displaying travel information because the server retrieves the data and renders it into a webpage. JavaScript helps connect the different parts of the application and provides the logic needed to handle requests and responses. The administrator side uses Angular to create a single-page application (SPA). Instead of reloading the entire page after every action, Angular updates the interface through components and services. The SPA is more interactive and better suited for administrative tasks such as adding and editing trips, while the Express website provides a straightforward experience for customers browsing travel packages.
+
+**Why did the backend use a NoSQL MongoDB database?**
+
+MongoDB was a good fit because the trip data can be represented as documents with fields such as trip code, name, length, start date, resort, price, image, and description. Its document-based structure works naturally with the JSON data exchanged by the API. I used Mongoose to define a schema and connect the Express server to the database. This allowed the application to retrieve and update trip information without hardcoding every trip into the webpages.
+
+## Functionality
+
+**How is JSON different from JavaScript and how does JSON tie together the frontend and backend development pieces?**
+
+JavaScript is a programming language used to write application logic, while JSON is a text-based format for organizing and exchanging data. JSON resembles JavaScript object notation, but it is not a programming language and cannot contain functions. In Travlr Getaways, the Express API sends trip records as JSON, and the Angular application receives that data through an HTTP service. The frontend can then display the records in reusable trip cards and forms. JSON serves as the common format that helps the frontend and backend communicate.
+
+**Provide instances in the full stack process when you refactored code to improve functionality and efficiencies, and name the benefits that come from reusable user interface (UI) components.**
+
+One important improvement was moving the customer website away from hardcoded travel listings and into Handlebars templates that render data dynamically. I also connected the Angular trip listing to a TripDataService rather than storing all the trip information directly in the component. Using separate components for trip cards, trip listings, and trip forms helped keep responsibilities organized. As the application developed, I added API methods for creating and updating trips and included authorization headers for protected requests. Reusable components reduce duplicate code, make the interface more consistent, and make changes easier because an update to one component can be reflected wherever it is used.
+
+## Testing
+
+**Explain your understanding of methods, endpoints, and security in a full stack application.**
+
+Testing a full stack application involves checking more than whether a webpage appears correctly. I needed to verify that the Angular interface could send requests to the Express API and that the API could read or change data in MongoDB. GET requests retrieve trip information, POST requests add new records, PUT requests update existing records, and DELETE requests remove records. Each endpoint has a specific URL and purpose, so it is important to test both successful requests and errors, such as requesting a trip code that does not exist or submitting invalid data. I also learned that adding authentication makes testing more involved. Administrative actions must include a valid JWT, while requests without valid authorization should be rejected. Testing these cases helps confirm that the interface, server, database, and security controls work together correctly.
+
+## Reflection
+
+**How has this course helped you in reaching your professional goals? What skills have you learned, developed, or mastered in this course to help you become a more marketable candidate in your career field?**
+
+This course helped me see how the individual programming concepts I have been learning fit together in a complete application. Before this project, I had more experience working on smaller assignments than connecting a frontend, server, API, and database into one system. Building Travlr Getaways gave me hands-on practice with Express routing, Handlebars templates, MongoDB and Mongoose, Angular components and services, RESTful APIs, and JWT authentication. I also gained more experience troubleshooting problems, testing changes, and organizing a project as it became more complex. Since I am still building my professional coding experience, having a full stack project in my portfolio gives me something concrete to demonstrate to potential employers and helps me feel more prepared to work on real development projects.
+
+## Running the Application
+
+This repository contains the course project source. To run it locally, install the dependencies for the Express server and Angular administrator application, configure a local MongoDB connection and the required authentication environment variables, then start the Express and Angular development servers using the scripts defined in their respective `package.json` files. Do not commit `.env` files, credentials, or generated `node_modules` folders.
+
+
